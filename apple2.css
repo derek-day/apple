@@ -1,0 +1,76 @@
+body {
+  margin: 0;
+  padding:0;
+	display: grid;
+	place-items: center;
+	min-height: 100vh;
+	font-family: sans-serif;
+  font-weight: 800;
+	overflow-x: hidden;
+}
+
+section {
+	min-height: 100vh;
+	width: 100vw;
+	height: 300vh;
+	view-timeline-name: --section;
+}
+
+section .section__content {
+	overflow: hidden;
+	transform-style: preserve-3d;
+	perspective: 100vh;
+	min-height: 100vh;
+	width: 100vw;
+	display: grid;
+	place-items: center;
+	position: sticky;
+	top: 0;
+}
+
+section:nth-of-type(1),
+section:nth-of-type(3) {
+	background: white;
+  fill: black;
+}
+
+section:nth-of-type(2),
+section:nth-of-type(4) {
+  z-index: 2;
+	background: black;
+  fill: white;
+}
+
+section svg {
+	--opacity: 1;
+	animation: blow-out both ease-in, fade-in both ease-in;
+	animation-timeline: --section;
+	animation-range: exit-crossing 10% exit 0%, exit-crossing 10% exit-crossing 25%;
+	transform-origin: 50% 50%;
+	width: 100%;
+	height: 100%;
+	opacity: 0.4;
+  transform: translate3d(0, 0, 1vh);
+	overflow: hidden;
+}
+
+svg text {
+	font-size: clamp(5rem, 10 + 1rem, 900rem);
+	font-weight: 800;
+}
+
+@keyframes blow-out {
+	to { transform:  translate3d(0, 0, 99vh);}
+}
+
+@keyframes fade-in {
+	to {
+		opacity: var(--opacity, 0.2);
+	}
+}
+
+@keyframes fade-out {
+	to {
+		opacity: 0;
+	}
+}
